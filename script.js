@@ -28,8 +28,6 @@ let selectedCourses = [];
 const courseTableBody = document.getElementById('course-table-body');
 const selectedCoursesList = document.getElementById('selected-courses-list');
 const totalCreditsElement = document.getElementById('total-credits');
-const searchInput = document.getElementById('search-input');
-const subjectFilter = document.getElementById('subject-filter');
 
 function init() {
     renderCourseTable();
@@ -127,4 +125,25 @@ function handleCourseAction(event) {
         button.addEventListener('click', handleCourseAction);
     });
 }
+
+// navbar stuff
+document.getElementById('edit-btn').addEventListener('click', editCourse);
+document.getElementById('delete-btn').addEventListener('click', deleteCourse);
+document.getElementById('logout-btn').addEventListener('click', logOut);
+
+// edit
+function editCourse() {
+    window.location.href = "edit.html";
+}
+
+// delete
+function deleteCourse() {
+    window.location.href = "delete.html";
+}
+
+// logout
+function logOut() {
+    window.location.href = "logout.html";
+}
+
 document.addEventListener('DOMContentLoaded', init);
