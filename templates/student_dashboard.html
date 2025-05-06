@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Student View</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='Style.css') }}"
+		/>
+	</head>
+
+	<body>
+		<div id="container">
+			<nav class="navbar">
+				<div class="navbar-title">Student View</div>
+				<div class="navbar-buttons">
+					<a
+						href="/logout"
+						style="margin-left: 20px; color: white; text-decoration: none"
+						>Logout</a
+					>
+				</div>
+			</nav>
+		</div>
+		<h2>Welcome, {{ session.username }}!</h2>
+		<h3>Your Classes</h3>
+		<ul>
+			{% for cls in my_classes %}
+			<li>
+				{{ cls.title }}
+				<form action="/drop/{{ cls.id }}" method="POST" style="display: inline">
+					<button type="submit">Drop</button>
+				</form>
+			</li>
+			{% else %}
+			<li>No enrolled classes.</li>
+			{% endfor %}
+		</ul>
+
+		<h3>Available Classes</h3>
+		<ul>
+			{% for cls in all_classes %}
+			<li>
+				{{ cls.title }}
+				<form
+					action="/enroll/{{ cls.id }}"
+					method="POST"
+					style="display: inline"
+				>
+					<button type="submit">Add</button>
+				</form>
+			</li>
+			{% else %}
+			<li>No classes available.</li>
+			{% endfor %}
+		</ul>
+		<script src="{{ url_for('static', filename='script.js') }}"></script>
+	</body>
+</html>

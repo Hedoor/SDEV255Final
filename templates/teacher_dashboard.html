@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Teacher View</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='Style.css') }}"
+		/>
+	</head>
+	<body>
+		<div class="navbar">
+			<div class="navbar-title">Teacher View</div>
+			<div class="navbar-buttons">
+				<a
+					href="/logout"
+					style="margin-left: 20px; color: white; text-decoration: none"
+					>Logout</a
+				>
+			</div>
+		</div>
+		<h2>Welcome, {{ session.username }}!</h2>
+
+		<h3>Create New Class</h3>
+		<form action="/create-class" method="POST">
+			<input name="title" placeholder="Class Title" required />
+			<input name="description" placeholder="Description" />
+			<button type="submit">Create</button>
+		</form>
+
+		<h3>Your Classes</h3>
+		<ul>
+			{% for class in teacher_classes %}
+			<li>
+				<strong>{{ class['title'] }}</strong><br />
+				{{ class['description'] }}<br />
+				<form method="POST" action="/edit-class/{{ class['id'] }}">
+					<button type="submit">Edit Class</button>
+				</form>
+				<form method="POST" action="/delete-class/{{ class['id'] }}">
+					<button type="submit">Delete Class</button>
+				</form>
+			</li>
+			{% else %}
+			<p>No classes created yet.</p>
+			{% endfor %}
+		</ul>
+		<script src="{{ url_for('static', filename='script.js') }}"></script>
+	</body>
+</html>
