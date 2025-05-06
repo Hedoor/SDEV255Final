@@ -3,8 +3,8 @@ import sqlite3
 import os
 
 # Define custom paths for templates and static files
-template_folder = r"C:\Website SDEV255"
-static_folder = r"C:\Website SDEV255\CSS"
+template_folder= "/Users/ltill/Desktop/ivyTech/spring2025/Website SDEV255/templates"
+static_folder= "/Users/ltill/Desktop/ivyTech/spring2025/Website SDEV255/static"
 
 # Initialize Flask app with custom paths
 app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
