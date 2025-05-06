@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Selection</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+    
+<body>
+<div id="container">
+<nav class="navbar">
+    <div class="navbar-title">Course Selection</div>
+    <div class="navbar-buttons">
+        <button class="nav-btn" id="edit-btn">Edit</button>
+        <button class="nav-btn" id="delete-btn">Delete</button>
+        <button class="nav-btn" id="logout-btn">Logout</button>
+    </div>
+</nav>
+
+    <table id="course-table">
+        <thead>
+            <tr>
+                <th>Course Code</th>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Subject</th>
+                <th>Credits</th>
+                <th>Add/Drop</th>
+            </tr>
+        </thead>
+        <tbody id="course-table-body">
+            <!-- courses to be populated here by js -->
+        </tbody>
+    </table>
+
+</div>
+    
+    <script src="script.js"></script>
+</body>
+    
+</html>
