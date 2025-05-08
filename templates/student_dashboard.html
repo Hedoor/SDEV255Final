@@ -1,60 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Student View</title>
-		<link
-			rel="stylesheet"
-			href="{{ url_for('static', filename='Style.css') }}"
-		/>
-	</head>
-
-	<body>
-		<div id="container">
-			<nav class="navbar">
-				<div class="navbar-title">Student View</div>
-				<div class="navbar-buttons">
-					<a
-						href="/logout"
-						style="margin-left: 20px; color: white; text-decoration: none"
-						>Logout</a
-					>
-				</div>
-			</nav>
-		</div>
-		<h2>Welcome, {{ session.username }}!</h2>
-		<h3>Your Classes</h3>
-		<ul>
-			{% for cls in my_classes %}
-			<li>
-				{{ cls.title }}
-				<form action="/drop/{{ cls.id }}" method="POST" style="display: inline">
-					<button type="submit">Drop</button>
-				</form>
-			</li>
-			{% else %}
-			<li>No enrolled classes.</li>
-			{% endfor %}
-		</ul>
-
-		<h3>Available Classes</h3>
-		<ul>
-			{% for cls in all_classes %}
-			<li>
-				{{ cls.title }}
-				<form
-					action="/enroll/{{ cls.id }}"
-					method="POST"
-					style="display: inline"
-				>
-					<button type="submit">Add</button>
-				</form>
-			</li>
-			{% else %}
-			<li>No classes available.</li>
-			{% endfor %}
-		</ul>
-		<script src="{{ url_for('static', filename='script.js') }}"></script>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student View</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar-brand">Student View</div>
+            <div class="navbar-actions">
+                <a href="/logout" class="nav-btn" id="logout-btn">Logout</a>
+            </div>
+        </nav>
+        
+        <h2>Welcome, {{ session.username }}!</h2>
+        
+        <div class="selected-courses">
+            <h3>Your Classes</h3>
+            <div id="selected-courses-list">
+                {% if my_classes %}
+                    <ul class="course-list">
+                        {% for cls in my_classes %}
+                        <li class="selected-course-item">
+                            <div>
+                                <strong>{{ cls.title }}</strong>
+                                <span class="course-credits">({{ cls.credits if cls.credits else '0' }} credits)</span>
+                            </div>
+                            <form action="/drop/{{ cls.id }}" method="POST" style="display: inline">
+                                <button type="submit" class="remove">Drop</button>
+                            </form>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No enrolled classes.</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="course-catalog">
+            <h3>Available Classes</h3>
+            
+            <table id="course-table">
+                <thead>
+                    <tr>
+                        <th>Class Title</th>
+                        <th>Description</th>
+                        <th>Code</th>
+                        <th>Credits</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="course-table-body">
+                    {% if all_classes %}
+                        {% for cls in all_classes %}
+                        <tr>
+                            <td data-label="Class Title">{{ cls.title }}</td>
+                            <td data-label="Description">{{ cls.description }}</td>
+                            <td data-label="Code">{{ cls.code }}</td>
+                            <td data-label="Credits">{{ cls.credits if cls.credits else '0' }}</td>
+                            <td data-label="Action">
+                                <form action="/enroll/{{ cls.id }}" method="POST" style="display: inline">
+                                    <button type="submit" class="add-btn">Add</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="5">No classes available.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
 </html>

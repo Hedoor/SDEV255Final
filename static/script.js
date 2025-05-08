@@ -143,7 +143,7 @@ function deleteCourse() {
 
 // logout
 function logOut() {
-    window.location.href = "logout.html";
+    window.location.href = "login.html";
 }
 
 document.addEventListener('DOMContentLoaded', init);
