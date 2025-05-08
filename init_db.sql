@@ -39,5 +39,5 @@ INSERT INTO users (username, password, role) VALUES
 
 -- Insert sample classes (created by prof_jane who has ID = 3)
 INSERT INTO classes (title, description, teacher_id) VALUES
-('Intro to Python', 'Beginner programming class', 3),
-('Web Development', 'HTML, CSS, JS Basics', 3);
+('Intro to Python', 'A programming class to teach beginners the fundamentals of Python.', 3),
+('Web Development', 'Teaches the basics of HTML, CSS, and JavaScript.', 3);

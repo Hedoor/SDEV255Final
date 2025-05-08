@@ -1,6 +1,5 @@
 body {
 	font-family: Arial, sans-serif;
-<<<<<<< Auth-test
 	line-height: 1.6;
 	margin: 0;
 	padding: 20px;
@@ -68,16 +67,22 @@ button {
 	border-radius: 4px;
 }
 
-button:hover {
-	background-color: #009299;
+.add-btn {
+    background-color: #00afb9;
+    color: white;
 }
 
-button.remove {
-	background-color: #f44336;
+.add-btn:hover {
+    background-color: #00afb9;
 }
 
-button.remove:hover {
-	background-color: #d32f2f;
+.remove {
+    background-color: #f44336;
+    color: white;
+}
+
+.remove:hover {
+    background-color: #d32f2f;
 }
 
 .login-container {
@@ -91,31 +96,12 @@ button.remove:hover {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-=======
-}
-
-h1 {
-	color: #333;
 }
 
 a {
-	color: blue;
-	text-decoration: none;
-}
-
-form {
-	margin: 20px;
-}
-
-button {
-	background-color: red;
 	color: white;
-	border: none;
-	padding: 5px 10px;
-	cursor: pointer;
 }
 
-button:hover {
-	background-color: darkred;
->>>>>>> main
-}
+a:hover {
+	color: #f44336;
+  }
