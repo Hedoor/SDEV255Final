@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
 import os
+app = Flask(__name__)
+print(app.template_folder)
 
 with open('init_db.sql', 'r') as f:
     sql = f.read()
