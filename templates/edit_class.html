@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Class</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar-brand">Edit Class</div>
+            <div class="navbar-actions">
+                <a href="/" class="nav-btn" id="logout-btn">Back to Dashboard</a>
+            </div>
+        </nav>
+        
+        <div class="edit-class-container">
+            <h2>Edit Class</h2>
+            
+            <form action="/edit-class/{{ class_data['id'] }}" method="POST" class="edit-form">
+                <div class="form-group">
+                    <label for="title">Class Title</label>
+                    <input type="text" id="title" name="title" value="{{ class_data['title'] }}" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" class="form-input">{{ class_data['description'] }}</textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <a href="/teacher-dashboard" class="cancel-btn">Cancel</a>
+                    <button type="submit" class="save-btn">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

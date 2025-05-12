@@ -233,3 +233,60 @@ textarea.form-input {
 	padding: 20px;
 	color: #666;
 }
+
+/* edit stuff */
+        .edit-class-container {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        
+        .edit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        textarea.form-input {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        
+        .save-btn {
+            padding: 10px 15px;
+            background-color: #00afb9;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cancel-btn {
+            padding: 10px 15px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
