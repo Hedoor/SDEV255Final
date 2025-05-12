@@ -131,11 +131,6 @@ document.getElementById('edit-btn').addEventListener('click', editCourse);
 document.getElementById('delete-btn').addEventListener('click', deleteCourse);
 document.getElementById('logout-btn').addEventListener('click', logOut);
 
-// edit
-function editCourse() {
-    window.location.href = "edit.html";
-}
-
 // delete
 function deleteCourse() {
     window.location.href = "delete.html";
@@ -145,5 +140,34 @@ function deleteCourse() {
 function logOut() {
     window.location.href = "login.html";
 }
+
+// edit
+document.addEventListener('DOMContentLoaded', function() {
+    const editForm = document.querySelector('.edit-form');
+    if (editForm) {
+        editForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const classId = this.getAttribute('action').split('/').pop();
+            
+            try {
+                const response = await fetch(`/edit-class/${classId}`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    window.location.href = '/'; // back to dashboard
+                } else {
+                    alert('Error saving changes');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while saving');
+            }
+        });
+    }
+});
 
 document.addEventListener('DOMContentLoaded', init);

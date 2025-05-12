@@ -111,17 +111,26 @@ def create_class():
     conn.close()
     return redirect('/teacher-dashboard')
 
-@app.route('/edit-class/<int:class_id>', methods=['POST'])
+@app.route('/edit-class/<int:class_id>', methods=['GET', 'POST'])
 def edit_class(class_id):
-    if session.get('role') != 'teacher':
-        return "Unauthorized", 403
-    title = request.form['title']
-    description = request.form['description']
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
     conn = get_db_connection()
-    conn.execute("UPDATE classes SET title = ?, description = ? WHERE id = ? AND teacher_id = ?", (title, description, class_id, session['user_id']))
-    conn.commit()
+    class_data = conn.execute('SELECT * FROM classes WHERE id = ?', (class_id,)).fetchone()
+    
+    if request.method == 'POST':
+        title = request.form['title']
+        description = request.form['description']
+        
+        conn.execute('UPDATE classes SET title = ?, description = ? WHERE id = ?',
+                   (title, description, class_id))
+        conn.commit()
+        conn.close()
+        return redirect('/teacher-dashboard')
+    
     conn.close()
-    return redirect('/teacher-dashboard')
+    return render_template('edit_class.html', class_data=class_data)
 
 @app.route('/delete-class/<int:class_id>', methods=['POST'])
 def delete_class(class_id):
